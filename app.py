@@ -1,5 +1,6 @@
 from flask import Flask, render_template, request, jsonify
 from pathlib import Path
+import os
 import json
 import traceback
 import requests
@@ -87,9 +88,7 @@ def submit_form():
         }
 
         # Отправка на webhook
-import os
-
-webhook_url = os.getenv('WEBHOOK_URL', '12345')
+   webhook_url = os.getenv('WEBHOOK_URL')
         if webhook_url:
             try:
                 response = requests.post(
