@@ -87,7 +87,9 @@ def submit_form():
         }
 
         # Отправка на webhook
-        webhook_url = "https://script.google.com/macros/s/AKfycbwsocKrTBv36qGvuBMEQU8G-sCTsh01jX6LbZ0WbroZRQleNtkUypViznM0J-FTBFGZ/exec"
+import os
+
+webhook_url = os.getenv('WEBHOOK_URL', '12345')
         if webhook_url:
             try:
                 response = requests.post(
