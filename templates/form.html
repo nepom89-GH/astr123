@@ -1,0 +1,1098 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Кармический разбор от Астропсихолога</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #0a0e27 0%, #1a1f3a 50%, #2d1b4e 100%);
+            min-height: 100vh;
+            padding: 20px;
+            color: #fff;
+            position: relative;
+            overflow-x: hidden;
+        }
+        /* Звездный фон */
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: 
+                radial-gradient(2px 2px at 20% 30%, #fff, transparent),
+                radial-gradient(2px 2px at 60% 70%, #fff, transparent),
+                radial-gradient(1px 1px at 50% 50%, #fff, transparent),
+                radial-gradient(1px 1px at 80% 10%, #fff, transparent),
+                radial-gradient(2px 2px at 90% 40%, #fff, transparent),
+                radial-gradient(1px 1px at 33% 60%, #fff, transparent),
+                radial-gradient(1px 1px at 55% 25%, #fff, transparent);
+            background-repeat: repeat;
+            background-size: 200% 200%;
+            opacity: 0.3;
+            animation: twinkle 20s infinite;
+            pointer-events: none;
+            z-index: 0;
+        }
+        @keyframes twinkle {
+            0%, 100% { opacity: 0.3; }
+            50% { opacity: 0.6; }
+        }
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            position: relative;
+            z-index: 1;
+        }
+        .header {
+            text-align: center;
+            margin-bottom: 40px;
+            padding: 20px;
+        }
+        .header h1 {
+            font-size: 2.5em;
+            margin-bottom: 10px;
+            background: linear-gradient(135deg, #ffd700, #ffaa00, #ff6b6b);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            text-shadow: 0 0 30px rgba(255, 215, 0, 0.5);
+        }
+        .header p {
+            font-size: 1.2em;
+            color: #b8b8d4;
+            margin-top: 10px;
+        }
+        /* Прогресс-бар */
+        .progress-container {
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 20px;
+            padding: 20px;
+            margin-bottom: 30px;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+        .progress-bar {
+            width: 100%;
+            height: 8px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 10px;
+            overflow: hidden;
+            margin-bottom: 10px;
+        }
+        .progress-fill {
+            height: 100%;
+            background: linear-gradient(90deg, #667eea, #764ba2, #f093fb);
+            border-radius: 10px;
+            transition: width 0.5s ease;
+        }
+        .progress-text {
+            text-align: center;
+            color: #b8b8d4;
+            font-size: 0.9em;
+        }
+        /* Форма */
+        .form-wrapper {
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(20px);
+            border-radius: 20px;
+            padding: 40px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
+        }
+        .step {
+            display: none;
+            animation: fadeIn 0.5s ease;
+        }
+        .step.active {
+            display: block;
+        }
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        .step-title {
+            font-size: 2em;
+            margin-bottom: 10px;
+            color: #ffd700;
+            text-align: center;
+        }
+        .step-subtitle {
+            text-align: center;
+            color: #b8b8d4;
+            margin-bottom: 30px;
+            font-size: 1.1em;
+        }
+        .form-group {
+            margin-bottom: 25px;
+        }
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            color: #fff;
+            font-weight: 500;
+            font-size: 1em;
+        }
+        .form-group input,
+        .form-group textarea,
+        .form-group select {
+            width: 100%;
+            padding: 15px;
+            border: 2px solid rgba(255, 255, 255, 0.2);
+            border-radius: 10px;
+            background: rgba(255, 255, 255, 0.1);
+            color: #fff;
+            font-size: 1em;
+            transition: all 0.3s ease;
+        }
+        .form-group input:focus,
+        .form-group textarea:focus,
+        .form-group select:focus {
+            outline: none;
+            border-color: #667eea;
+            background: rgba(255, 255, 255, 0.15);
+            box-shadow: 0 0 20px rgba(102, 126, 234, 0.3);
+        }
+        .form-group input::placeholder,
+        .form-group textarea::placeholder {
+            color: rgba(255, 255, 255, 0.5);
+        }
+        .form-group small {
+            display: block;
+            margin-top: 5px;
+            color: #b8b8d4;
+            font-size: 0.85em;
+        }
+        .form-group .error-message {
+            color: #ff6b6b;
+            font-size: 0.85em;
+            margin-top: 5px;
+            display: none;
+        }
+        .form-group.error input,
+        .form-group.error textarea,
+        .form-group.error select {
+            border-color: #ff6b6b;
+        }
+        .form-group.error .error-message {
+            display: block;
+        }
+        .form-group.success input,
+        .form-group.success textarea,
+        .form-group.success select {
+            border-color: #51cf66;
+        }
+        .hint-icon {
+            display: inline-block;
+            margin-left: 8px;
+            cursor: help;
+            color: #ffd700;
+            font-size: 1.2em;
+        }
+        .hint-text {
+            display: none;
+            position: absolute;
+            background: rgba(0, 0, 0, 0.9);
+            color: #fff;
+            padding: 10px;
+            border-radius: 5px;
+            font-size: 0.85em;
+            max-width: 300px;
+            z-index: 1000;
+            margin-top: 5px;
+        }
+        .hint-icon:hover + .hint-text {
+            display: block;
+        }
+        /* Кнопки */
+        .btn {
+            padding: 15px 30px;
+            border: none;
+            border-radius: 10px;
+            font-size: 1.1em;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+        .btn-primary {
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            color: #fff;
+            width: 100%;
+            margin-top: 20px;
+        }
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 30px rgba(102, 126, 234, 0.4);
+        }
+        .btn-primary:active {
+            transform: translateY(0);
+        }
+        .btn-secondary {
+            background: rgba(255, 255, 255, 0.1);
+            color: #fff;
+            border: 2px solid rgba(255, 255, 255, 0.3);
+        }
+        .btn-secondary:hover {
+            background: rgba(255, 255, 255, 0.2);
+        }
+        .button-group {
+            display: flex;
+            gap: 15px;
+            margin-top: 30px;
+        }
+        /* Члены семьи */
+        .family-member {
+            background: rgba(255, 255, 255, 0.05);
+            border: 2px solid rgba(255, 255, 255, 0.1);
+            border-radius: 15px;
+            padding: 20px;
+            margin-bottom: 20px;
+            position: relative;
+            animation: slideIn 0.3s ease;
+        }
+        @keyframes slideIn {
+            from {
+                opacity: 0;
+                transform: translateX(-20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+        .family-member-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 15px;
+        }
+        .family-member-title {
+            font-size: 1.2em;
+            color: #ffd700;
+            font-weight: 600;
+        }
+        .btn-remove {
+            background: rgba(255, 107, 107, 0.2);
+            color: #ff6b6b;
+            border: 2px solid #ff6b6b;
+            padding: 8px 15px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 0.9em;
+            transition: all 0.3s ease;
+        }
+        .btn-remove:hover {
+            background: rgba(255, 107, 107, 0.3);
+        }
+        .btn-add {
+            background: rgba(102, 126, 234, 0.2);
+            color: #667eea;
+            border: 2px solid #667eea;
+            padding: 12px 25px;
+            border-radius: 10px;
+            cursor: pointer;
+            font-size: 1em;
+            transition: all 0.3s ease;
+            width: 100%;
+            margin-top: 15px;
+        }
+        .btn-add:hover {
+            background: rgba(102, 126, 234, 0.3);
+        }
+        .motivational-text {
+            background: rgba(255, 215, 0, 0.1);
+            border-left: 4px solid #ffd700;
+            padding: 15px;
+            border-radius: 8px;
+            margin-bottom: 25px;
+            color: #fff;
+            font-style: italic;
+        }
+        /* Вопросы */
+        .questions-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 15px;
+            margin-bottom: 20px;
+        }
+        /* Опыт астрологии */
+        .radio-group {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            margin-top: 10px;
+        }
+        .radio-group label {
+            display: flex;
+            align-items: center;
+            cursor: pointer;
+            padding: 10px;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 8px;
+            transition: all 0.2s ease;
+        }
+        .radio-group label:hover {
+            background: rgba(102, 126, 234, 0.2);
+        }
+        .radio-group input[type="radio"] {
+            margin-right: 10px;
+            width: 18px;
+            height: 18px;
+        }
+        /* Обзор данных */
+        .review-section {
+            background: rgba(0, 0, 0, 0.2);
+            padding: 15px;
+            border-radius: 10px;
+            margin-bottom: 15px;
+        }
+        .review-label {
+            color: #ffd700;
+            font-weight: bold;
+        }
+        .review-value {
+            color: white;
+            display: block;
+        }
+        /* Мобильная адаптация */
+        @media (max-width: 768px) {
+            .header h1 {
+                font-size: 1.8em;
+            }
+            .form-wrapper {
+                padding: 20px;
+            }
+            .step-title {
+                font-size: 1.5em;
+            }
+            .button-group {
+                flex-direction: column;
+            }
+            .btn {
+                width: 100%;
+            }
+        }
+        /* Автодополнение */
+        .autocomplete-container {
+            position: relative;
+        }
+        .autocomplete-dropdown {
+            position: absolute;
+            top: 100%;
+            left: 0;
+            right: 0;
+            background: rgba(26, 31, 58, 0.95);
+            border: 2px solid rgba(255, 255, 255, 0.2);
+            border-radius: 10px;
+            margin-top: 5px;
+            max-height: 200px;
+            overflow-y: auto;
+            z-index: 1000;
+            display: none;
+        }
+        .autocomplete-dropdown.show {
+            display: block;
+        }
+        .autocomplete-item {
+            padding: 12px 15px;
+            cursor: pointer;
+            transition: background 0.2s ease;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        .autocomplete-item:hover {
+            background: rgba(102, 126, 234, 0.3);
+        }
+        .autocomplete-item:last-child {
+            border-bottom: none;
+        }
+        /* Сообщения об успехе */
+        #successMessageContainer {
+            margin-bottom: 20px;
+            min-height: 0;
+        }
+        .success-message {
+            background: rgba(81, 207, 102, 0.2);
+            border: 2px solid #51cf66;
+            color: #51cf66;
+            padding: 15px;
+            border-radius: 10px;
+            text-align: center;
+            opacity: 0;
+            transform: translateY(-10px);
+            transition: opacity 0.5s ease, transform 0.5s ease;
+            margin-bottom: 0;
+        }
+        .success-message.show {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>🌀 Кармический разбор от Астропсихолога</h1>
+            <p>Глубокий анализ вашей души и кармических задач</p>
+        </div>
+        <!-- Прогресс-бар -->
+        <div class="progress-container">
+            <div class="progress-bar">
+                <div class="progress-fill" id="progressFill"></div>
+            </div>
+            <div class="progress-text">
+                <span id="progressText">Шаг 1 из 5</span>
+            </div>
+        </div>
+        <!-- Форма -->
+        <div class="form-wrapper">
+            <div id="successMessageContainer"></div>
+            <form id="astrologyForm">
+                <!-- ШАГ 1: Ваша Вселенная -->
+                <div class="step active" id="step1">
+                    <h2 class="step-title">✨ Ваша Вселенная</h2>
+                    <p class="step-subtitle">Расскажите нам о себе</p>
+                    <div class="form-group" id="nameGroup">
+                        <label for="name">Ваше имя <span style="color: #ff6b6b;">*</span></label>
+                        <input type="text" id="name" name="name" placeholder="Введите ваше имя" required>
+                        <div class="error-message">Пожалуйста, введите ваше имя</div>
+                    </div>
+                    <div class="form-group" id="emailGroup">
+                        <label for="email">Ваш email <span style="color: #ff6b6b;">*</span></label>
+                        <input type="email" id="email" name="email" placeholder="example@email.com" required>
+                        <small>На этот email мы вышлем ваш персональный отчет</small>
+                        <div class="error-message">Пожалуйста, введите корректный email</div>
+                    </div>
+                    <div class="form-group">
+                        <label for="phone">Ваш номер телефона</label>
+                        <input type="tel" id="phone" name="phone" placeholder="+7 (999) 123-45-67">
+                        <small>Необязательно, но может пригодиться для уточнения деталей</small>
+                    </div>
+                    <div class="form-group" id="birthDateGroup">
+                        <label for="birthDate">Дата рождения <span style="color: #ff6b6b;">*</span></label>
+                        <input type="date" id="birthDate" name="birthDate" max="" required>
+                        <div class="error-message">Пожалуйста, выберите дату рождения</div>
+                    </div>
+                    <div class="form-group" id="birthTimeGroup">
+                        <label for="birthTime">Время рождения
+                            <span class="hint-icon">ℹ️</span>
+                            <span class="hint-text">Чем точнее время, тем глубже анализ. Посмотрите, пожалуйста, в свидетельстве о рождении.</span>
+                        </label>
+                        <input type="time" id="birthTime" name="birthTime"> <!-- Необязательное поле -->
+                    </div>
+                    <div class="form-group" id="birthPlaceGroup">
+                        <label for="birthPlace">Место рождения <span style="color: #ff6b6b;">*</span></label>
+                        <div class="autocomplete-container">
+                            <input type="text" id="birthPlace" name="birthPlace" placeholder="Начните вводить название города..." required autocomplete="off">
+                            <div class="autocomplete-dropdown" id="birthPlaceDropdown"></div>
+                        </div>
+                        <input type="hidden" id="birthPlaceLat" name="birthPlaceLat">
+                        <input type="hidden" id="birthPlaceLon" name="birthPlaceLon">
+                        <small style="color: #b8b8d4; margin-top: 5px; display: block;">Начните вводить название города, затем выберите вариант из выпадающего списка</small>
+                        <div class="error-message">Пожалуйста, выберите место рождения из списка автодополнения</div>
+                    </div>
+                    <button type="button" class="btn btn-primary" onclick="nextStep()">Продолжить путешествие →</button>
+                </div>
+
+                <!-- ШАГ 2: Ваша Галактика -->
+                <div class="step" id="step2">
+                    <h2 class="step-title">🌌 Ваша Галактика</h2>
+                    <p class="step-subtitle">Добавьте близких людей</p>
+                    <div class="motivational-text">
+                        Добавляя близких, вы получаете не только их индивидуальные портреты, но и уникальный анализ ваших отношений и кармических связей.
+                    </div>
+                    <div id="familyMembers"></div>
+                    <button type="button" class="btn btn-add" onclick="addFamilyMember()">+ Добавить члена семьи</button>
+                    <div class="button-group">
+                        <button type="button" class="btn btn-secondary" onclick="prevStep()">← Назад</button>
+                        <button type="button" class="btn btn-primary" onclick="nextStep()">Продолжить путешествие →</button>
+                    </div>
+                </div>
+
+                <!-- ШАГ 3: Ваши вопросы к звёздам -->
+                <div class="step" id="step3">
+                    <h2 class="step-title">❓ Ваши вопросы к звёздам</h2>
+                    <p class="step-subtitle">Задайте до 10 вопросов — все поля необязательны</p>
+                    <div class="questions-grid">
+                        <div class="form-group">
+                            <label for="question1">Вопрос 1</label>
+                            <textarea id="question1" name="question1" rows="2" placeholder="Например: Как мне найти своё предназначение?"></textarea>
+                        </div>
+                        <div class="form-group">
+                            <label for="question2">Вопрос 2</label>
+                            <textarea id="question2" name="question2" rows="2" placeholder="Например: Когда я встречу свою вторую половинку?"></textarea>
+                        </div>
+                        <div class="form-group">
+                            <label for="question3">Вопрос 3</label>
+                            <textarea id="question3" name="question3" rows="2" placeholder=""></textarea>
+                        </div>
+                        <div class="form-group">
+                            <label for="question4">Вопрос 4</label>
+                            <textarea id="question4" name="question4" rows="2" placeholder=""></textarea>
+                        </div>
+                        <div class="form-group">
+                            <label for="question5">Вопрос 5</label>
+                            <textarea id="question5" name="question5" rows="2" placeholder=""></textarea>
+                        </div>
+                        <div class="form-group">
+                            <label for="question6">Вопрос 6</label>
+                            <textarea id="question6" name="question6" rows="2" placeholder=""></textarea>
+                        </div>
+                        <div class="form-group">
+                            <label for="question7">Вопрос 7</label>
+                            <textarea id="question7" name="question7" rows="2" placeholder=""></textarea>
+                        </div>
+                        <div class="form-group">
+                            <label for="question8">Вопрос 8</label>
+                            <textarea id="question8" name="question8" rows="2" placeholder=""></textarea>
+                        </div>
+                        <div class="form-group">
+                            <label for="question9">Вопрос 9</label>
+                            <textarea id="question9" name="question9" rows="2" placeholder=""></textarea>
+                        </div>
+                        <div class="form-group">
+                            <label for="question10">Вопрос 10</label>
+                            <textarea id="question10" name="question10" rows="2" placeholder=""></textarea>
+                        </div>
+                    </div>
+                    <div class="button-group">
+                        <button type="button" class="btn btn-secondary" onclick="prevStep()">← Назад</button>
+                        <button type="button" class="btn btn-primary" onclick="nextStep()">Продолжить путешествие →</button>
+                    </div>
+                </div>
+
+                <!-- ШАГ 4: Ваш опыт с астрологией -->
+                <div class="step" id="step4">
+                    <h2 class="step-title">🔮 Ваш астрологический опыт</h2>
+                    <p class="step-subtitle">Это поможет мне адаптировать глубину и терминологию анализа</p>
+                    
+                    <div class="form-group">
+                        <label>Были ли у вас ранее консультации у астрологов?</label>
+                        <div class="radio-group">
+                            <label><input type="radio" name="astrology_experience" value="never" required> Никогда</label>
+                            <label><input type="radio" name="astrology_experience" value="once"> 1-2 раза</label>
+                            <label><input type="radio" name="astrology_experience" value="often"> Регулярно</label>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label>Какой формат анализа вам ближе?</label>
+                        <div class="radio-group">
+                            <label><input type="radio" name="report_format" value="spiritual" required> Духовный (метафоры, символы, связи с душой)</label>
+                            <label><input type="radio" name="report_format" value="practical"> Практический (конкретные шаги, рекомендации)</label>
+                            <label><input type="radio" name="report_format" value="balanced"> Сбалансированный</label>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label>Есть ли у вас особые пожелания к анализу?</label>
+                        <textarea name="special_wishes" rows="3" placeholder="Например: «Не хочу подробного разбора здоровья», «Особое внимание — отношениям»"></textarea>
+                    </div>
+                    
+                    <div class="button-group">
+                        <button type="button" class="btn btn-secondary" onclick="prevStep()">← Назад</button>
+                        <button type="button" class="btn btn-primary" onclick="nextStep()">Проверить данные →</button>
+                    </div>
+                </div>
+
+                <!-- ШАГ 5: Проверка данных -->
+                <div class="step" id="step5">
+                    <h2 class="step-title">🔍 Финальная проверка</h2>
+                    <p class="step-subtitle">Пожалуйста, проверьте информацию. Если всё корректно — нажмите «Отправить»</p>
+                    <div id="reviewContent"></div>
+                    <div class="button-group">
+                        <button type="button" class="btn btn-secondary" onclick="prevStep()">← Назад</button>
+                        <button type="button" class="btn btn-primary" onclick="submitForm()">Получить мой кармический разбор ✨</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <script>
+        let currentStep = 1;
+        const totalSteps = 5; // Теперь 5 шагов
+        let familyMemberCount = 0;
+        let selectedPlaces = {};
+
+        function setMaxDate() {
+            const today = new Date();
+            const maxDate = today.toISOString().split('T')[0];
+            document.getElementById('birthDate').setAttribute('max', maxDate);
+        }
+        setMaxDate();
+
+        function updateProgress() {
+            const progress = (currentStep / totalSteps) * 100;
+            document.getElementById('progressFill').style.width = progress + '%';
+            document.getElementById('progressText').textContent = `Шаг ${currentStep} из ${totalSteps}`;
+        }
+
+        // Валидация шага 1: время — не обязательно
+        function validateStep1() {
+            let isValid = true;
+            const name = document.getElementById('name').value.trim();
+            const email = document.getElementById('email').value.trim();
+            const birthDate = document.getElementById('birthDate').value;
+            const birthPlace = document.getElementById('birthPlace').value.trim();
+            const birthPlaceLat = document.getElementById('birthPlaceLat').value;
+
+            if (!name) { document.getElementById('nameGroup').classList.add('error'); isValid = false; }
+            else { document.getElementById('nameGroup').classList.remove('error'); }
+
+            const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            if (!email || !emailRegex.test(email)) { document.getElementById('emailGroup').classList.add('error'); isValid = false; }
+            else { document.getElementById('emailGroup').classList.remove('error'); }
+
+            if (!birthDate) { document.getElementById('birthDateGroup').classList.add('error'); isValid = false; }
+            else {
+                const date = new Date(birthDate);
+                const today = new Date();
+                if (date > today) {
+                    document.getElementById('birthDateGroup').classList.add('error');
+                    document.querySelector('#birthDateGroup .error-message').textContent = 'Дата рождения не может быть в будущем';
+                    isValid = false;
+                } else {
+                    document.getElementById('birthDateGroup').classList.remove('error');
+                }
+            }
+
+            if (!birthPlace) { document.getElementById('birthPlaceGroup').classList.add('error'); isValid = false; }
+            else if (!birthPlaceLat) { document.getElementById('birthPlaceGroup').classList.add('error'); isValid = false; }
+            else { document.getElementById('birthPlaceGroup').classList.remove('error'); }
+
+            return isValid;
+        }
+
+        // Валидация шага 2: члены семьи
+        function validateStep2() {
+            const memberDivs = document.querySelectorAll('.family-member');
+            let isValid = true;
+            memberDivs.forEach((memberDiv) => {
+                const memberId = memberDiv.id.replace('familyMember', '');
+                const nameInput = memberDiv.querySelector(`input[name="family_name_${memberId}"]`);
+                const relationSelect = memberDiv.querySelector(`select[name="family_relation_${memberId}"]`);
+                const birthDateInput = memberDiv.querySelector(`input[name="family_birthDate_${memberId}"]`);
+                const birthPlaceInput = memberDiv.querySelector(`input[name="family_birthPlace_${memberId}"]`);
+                const birthPlaceLatInput = memberDiv.querySelector(`input[name="family_birthPlaceLat_${memberId}"]`);
+
+                const name = nameInput?.value.trim() || '';
+                const relation = relationSelect?.value || '';
+                const birthDate = birthDateInput?.value || '';
+                const birthPlace = birthPlaceInput?.value.trim() || '';
+                const birthPlaceLat = birthPlaceLatInput?.value || '';
+
+                if (name || relation || birthDate || birthPlace) {
+                    if (!name || !relation || !birthDate || !birthPlace || !birthPlaceLat) {
+                        isValid = false;
+                    }
+                }
+            });
+            if (!isValid) {
+                alert('Пожалуйста, полностью заполните добавленных членов семьи или удалите незаполненные записи.');
+            }
+            return isValid;
+        }
+
+        // Валидация шага 4 (опыт астрологии)
+        function validateStep4() {
+            const astrologyExperience = document.querySelector('input[name="astrology_experience"]:checked');
+            const reportFormat = document.querySelector('input[name="report_format"]:checked');
+            
+            if (!astrologyExperience || !reportFormat) {
+                alert('Пожалуйста, выберите опыт с астрологией и предпочитаемый формат анализа.');
+                return false;
+            }
+            return true;
+        }
+
+        // Сбор данных для обзора
+        function collectFormDataForReview() {
+            // Сбор данных клиента
+            const customerData = {
+                name: document.getElementById('name').value.trim(),
+                email: document.getElementById('email').value.trim(),
+                phone: document.getElementById('phone').value.trim(),
+                birthDate: document.getElementById('birthDate').value,
+                birthTime: document.getElementById('birthTime').value,
+                birthPlace: document.getElementById('birthPlace').value.trim()
+            };
+
+            // Сбор вопросов
+            const questions = [];
+            for (let i = 1; i <= 10; i++) {
+                const q = document.getElementById(`question${i}`)?.value.trim();
+                if (q) questions.push(`${q}`);
+            }
+
+            // Сбор членов семьи
+            const familyMembers = [];
+            document.querySelectorAll('.family-member').forEach(memberDiv => {
+                const memberId = memberDiv.id.replace('familyMember', '');
+                const name = memberDiv.querySelector(`[name="family_name_${memberId}"]`)?.value.trim() || '';
+                const relation = memberDiv.querySelector(`[name="family_relation_${memberId}"]`)?.value || '';
+                const birthDate = memberDiv.querySelector(`[name="family_birthDate_${memberId}"]`)?.value || '';
+                const birthTime = memberDiv.querySelector(`[name="family_birthTime_${memberId}"]`)?.value || '';
+                const birthPlace = memberDiv.querySelector(`[name="family_birthPlace_${memberId}"]`)?.value.trim() || '';
+
+                if (name || relation || birthDate || birthPlace) {
+                    familyMembers.push({ name, relation, birthDate, birthTime, birthPlace });
+                }
+            });
+
+            // Опыт астрологии
+            const astrologyExperience = document.querySelector('input[name="astrology_experience"]:checked')?.value || '';
+            const reportFormat = document.querySelector('input[name="report_format"]:checked')?.value || '';
+            const specialWishes = document.querySelector('textarea[name="special_wishes"]')?.value.trim() || '';
+
+            return {
+                customer: customerData,
+                questions,
+                familyMembers,
+                astrologyExperience,
+                reportFormat,
+                specialWishes
+            };
+        }
+
+        // Отображение обзора на шаге 5
+        function renderReviewStep() {
+            const data = collectFormDataForReview();
+            
+            // Маппинг значений для отображения
+            const experienceMap = {
+                'never': 'Никогда не обращался(ась) к астрологам',
+                'once': '1-2 раза обращался(ась) к астрологам',
+                'often': 'Регулярно обращаюсь к астрологам'
+            };
+            
+            const formatMap = {
+                'spiritual': 'Духовный (метафоры, символы, связи с душой)',
+                'practical': 'Практический (конкретные шаги, рекомендации)',
+                'balanced': 'Сбалансированный'
+            };
+
+            let html = `<div class="review-section"><span class="review-label">Имя:</span> <span class="review-value">${data.customer.name || '—'}</span></div>`;
+            html += `<div class="review-section"><span class="review-label">Email:</span> <span class="review-value">${data.customer.email || '—'}</span></div>`;
+            if (data.customer.phone) html += `<div class="review-section"><span class="review-label">Телефон:</span> <span class="review-value">${data.customer.phone}</span></div>`;
+            html += `<div class="review-section"><span class="review-label">Дата рождения:</span> <span class="review-value">${data.customer.birthDate || '—'}</span></div>`;
+            html += `<div class="review-section"><span class="review-label">Время рождения:</span> <span class="review-value">${data.customer.birthTime || '—'}</span></div>`;
+            html += `<div class="review-section"><span class="review-label">Место рождения:</span> <span class="review-value">${data.customer.birthPlace || '—'}</span></div>`;
+
+            if (data.familyMembers.length > 0) {
+                html += `<div class="review-section"><span class="review-label">Члены семьи:</span></div>`;
+                data.familyMembers.forEach(m => {
+                    html += `
+                        <div class="review-section" style="padding-left: 20px; border-left: 2px solid rgba(255,215,0,0.3);">
+                            <b>${m.name}</b> (${m.relation})<br>
+                            Рождён(а): ${m.birthDate || '—'}, ${m.birthTime || '—'}, ${m.birthPlace || '—'}
+                        </div>
+                    `;
+                });
+            }
+
+            if (data.questions.length > 0) {
+                html += `<div class="review-section"><span class="review-label">Ваши вопросы:</span></div>`;
+                data.questions.forEach(q => {
+                    html += `<div class="review-section" style="padding-left: 20px; font-style: italic;">${q}</div>`;
+                });
+            }
+
+            html += `<div class="review-section"><span class="review-label">Опыт с астрологией:</span> <span class="review-value">${experienceMap[data.astrologyExperience] || '—'}</span></div>`;
+            html += `<div class="review-section"><span class="review-label">Формат анализа:</span> <span class="review-value">${formatMap[data.reportFormat] || '—'}</span></div>`;
+            if (data.specialWishes) {
+                html += `<div class="review-section"><span class="review-label">Особые пожелания:</span> <span class="review-value">${data.specialWishes}</span></div>`;
+            }
+
+            document.getElementById('reviewContent').innerHTML = html;
+        }
+
+        function nextStep() {
+            if (currentStep === 1 && !validateStep1()) {
+                const firstError = document.querySelector('.step.active .form-group.error');
+                if (firstError) firstError.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                return;
+            }
+            if (currentStep === 2 && !validateStep2()) return;
+            if (currentStep === 4 && !validateStep4()) return;
+
+            if (currentStep < totalSteps) {
+                document.getElementById(`step${currentStep}`).classList.remove('active');
+                currentStep++;
+                document.getElementById(`step${currentStep}`).classList.add('active');
+                
+                // Генерация обзора на шаге 5
+                if (currentStep === 5) {
+                    renderReviewStep();
+                }
+                
+                updateProgress();
+                document.querySelector('.form-wrapper').scrollIntoView({ behavior: 'smooth', block: 'start' });
+            }
+        }
+
+        function prevStep() {
+            if (currentStep > 1) {
+                document.getElementById(`step${currentStep}`).classList.remove('active');
+                currentStep--;
+                document.getElementById(`step${currentStep}`).classList.add('active');
+                updateProgress();
+            }
+        }
+
+        function submitForm() {
+            const data = collectFormDataForReview();
+            
+            // Подготовка данных для отправки
+            const payload = {
+                customer: {
+                    name: data.customer.name,
+                    email: data.customer.email,
+                    phone: data.customer.phone,
+                    birthDate: data.customer.birthDate,
+                    birthTime: data.customer.birthTime,
+                    birthPlace: {
+                        name: data.customer.birthPlace,
+                        lat: parseFloat(document.getElementById('birthPlaceLat').value) || null,
+                        lon: parseFloat(document.getElementById('birthPlaceLon').value) || null
+                    }
+                },
+                familyMembers: [],
+                questions: {},
+                astrologyExperience: data.astrologyExperience,
+                reportFormat: data.reportFormat,
+                specialWishes: data.specialWishes
+            };
+
+            // Добавляем вопросы
+            for (let i = 1; i <= 10; i++) {
+                const val = document.getElementById(`question${i}`)?.value.trim();
+                if (val) payload.questions[`question${i}`] = val;
+            }
+
+            // Добавляем членов семьи
+            document.querySelectorAll('.family-member').forEach(memberDiv => {
+                const memberId = memberDiv.id.replace('familyMember', '');
+                const name = memberDiv.querySelector(`[name="family_name_${memberId}"]`)?.value.trim() || '';
+                const relation = memberDiv.querySelector(`[name="family_relation_${memberId}"]`)?.value || '';
+                const birthDate = memberDiv.querySelector(`[name="family_birthDate_${memberId}"]`)?.value || '';
+                const birthTime = memberDiv.querySelector(`[name="family_birthTime_${memberId}"]`)?.value || '';
+                const lat = memberDiv.querySelector(`[name="family_birthPlaceLat_${memberId}"]`)?.value || null;
+                const lon = memberDiv.querySelector(`[name="family_birthPlaceLon_${memberId}"]`)?.value || null;
+                const place = memberDiv.querySelector(`[name="family_birthPlace_${memberId}"]`)?.value.trim() || '';
+
+                if (name && relation && birthDate && place && lat) {
+                    payload.familyMembers.push({
+                        name, relation, birthDate, birthTime,
+                        birthPlace: { name: place, lat: parseFloat(lat), lon: parseFloat(lon) }
+                    });
+                }
+            });
+
+            // Отправка формы
+            fetch('/api/submit_form', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify(payload)
+            })
+            .then(response => response.json())
+            .then(data => {
+                if (data.success) {
+                    showSuccessMessage('🎉 Спасибо! Ваша заявка успешно отправлена! Мы начнём подготовку вашего кармического разбора.');
+                    setTimeout(() => {
+                        // Сброс формы
+                        document.getElementById('astrologyForm').reset();
+                        currentStep = 1;
+                        document.querySelectorAll('.step').forEach(s => s.classList.remove('active'));
+                        document.getElementById('step1').classList.add('active');
+                        document.getElementById('familyMembers').innerHTML = '';
+                        familyMemberCount = 0;
+                        updateProgress();
+                    }, 3000);
+                } else {
+                    alert('Ошибка отправки. Попробуйте позже.');
+                }
+            })
+            .catch(err => {
+                console.error(err);
+                alert('Ошибка при отправке формы.');
+            });
+        }
+
+        function showSuccessMessage(message) {
+            const container = document.getElementById('successMessageContainer');
+            if (!container) return;
+            const existing = container.querySelector('.success-message');
+            if (existing) existing.remove();
+            const msg = document.createElement('div');
+            msg.className = 'success-message show';
+            msg.textContent = message;
+            container.appendChild(msg);
+            setTimeout(() => {
+                msg.classList.remove('show');
+                setTimeout(() => msg.remove(), 500);
+            }, 3000);
+        }
+
+        // Автодополнение для места рождения
+        let autocompleteTimeout;
+        document.getElementById('birthPlace')?.addEventListener('input', function() {
+            clearTimeout(autocompleteTimeout);
+            const query = this.value.trim();
+            if (this.value !== (selectedPlaces['birthPlace']?.name || '')) {
+                document.getElementById('birthPlaceLat').value = '';
+                document.getElementById('birthPlaceLon').value = '';
+            }
+            if (query.length < 2) {
+                document.getElementById('birthPlaceDropdown').classList.remove('show');
+                return;
+            }
+            autocompleteTimeout = setTimeout(() => searchCity(query, 'birthPlace'), 300);
+        });
+
+        function searchCity(query, fieldId) {
+            fetch(`/api/search_city?q=${encodeURIComponent(query)}`)
+                .then(res => res.json())
+                .then(data => {
+                    const dropdown = document.getElementById(fieldId + 'Dropdown');
+                    if (!dropdown) return;
+                    dropdown.innerHTML = '';
+                    if (data.results?.length) {
+                        data.results.forEach(r => {
+                            const item = document.createElement('div');
+                            item.className = 'autocomplete-item';
+                            item.textContent = r.name;
+                            item.onclick = () => {
+                                document.getElementById(fieldId).value = r.name;
+                                document.getElementById(fieldId + 'Lat').value = r.lat;
+                                document.getElementById(fieldId + 'Lon').value = r.lon;
+                                selectedPlaces[fieldId] = { name: r.name };
+                                dropdown.classList.remove('show');
+                                document.getElementById(fieldId + 'Group')?.classList.remove('error');
+                            };
+                            dropdown.appendChild(item);
+                        });
+                        dropdown.classList.add('show');
+                    } else {
+                        dropdown.classList.remove('show');
+                    }
+                });
+        }
+
+        document.addEventListener('click', e => {
+            if (!e.target.closest('.autocomplete-container')) {
+                document.querySelectorAll('.autocomplete-dropdown').forEach(d => d.classList.remove('show'));
+            }
+        });
+
+        // Добавление члена семьи
+        function addFamilyMember() {
+            familyMemberCount++;
+            const container = document.getElementById('familyMembers');
+            const div = document.createElement('div');
+            div.className = 'family-member';
+            div.id = `familyMember${familyMemberCount}`;
+            div.innerHTML = `
+                <div class="family-member-header">
+                    <div class="family-member-title">Член семьи #${familyMemberCount}</div>
+                    <button type="button" class="btn-remove" onclick="removeFamilyMember(${familyMemberCount})">🗑️ Удалить</button>
+                </div>
+                <div class="form-group">
+                    <label>Имя <span style="color: #ff6b6b;">*</span></label>
+                    <input type="text" name="family_name_${familyMemberCount}" required>
+                </div>
+                <div class="form-group">
+                    <label>Родственная связь <span style="color: #ff6b6b;">*</span></label>
+                    <select name="family_relation_${familyMemberCount}" required>
+                        <option value="">Выберите связь</option>
+                        <option value="spouse">Супруг/а</option>
+                        <option value="son">Сын</option>
+                        <option value="daughter">Дочь</option>
+                        <option value="mother">Мать</option>
+                        <option value="father">Отец</option>
+                        <option value="partner">Партнер</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label>Дата рождения <span style="color: #ff6b6b;">*</span></label>
+                    <input type="date" name="family_birthDate_${familyMemberCount}" max="" required>
+                </div>
+                <div class="form-group">
+                    <label>Время рождения</label>
+                    <input type="time" name="family_birthTime_${familyMemberCount}"> <!-- Необязательное поле -->
+                </div>
+                <div class="form-group">
+                    <label>Место рождения <span style="color: #ff6b6b;">*</span></label>
+                    <div class="autocomplete-container">
+                        <input type="text" name="family_birthPlace_${familyMemberCount}" placeholder="Город, Страна" required autocomplete="off" data-member-id="${familyMemberCount}">
+                        <div class="autocomplete-dropdown" id="familyBirthPlaceDropdown${familyMemberCount}"></div>
+                    </div>
+                    <input type="hidden" name="family_birthPlaceLat_${familyMemberCount}">
+                    <input type="hidden" name="family_birthPlaceLon_${familyMemberCount}">
+                </div>
+            `;
+            container.appendChild(div);
+            
+            // Установка максимальной даты для поля даты рождения
+            document.querySelector(`input[name="family_birthDate_${familyMemberCount}"]`).setAttribute('max', new Date().toISOString().split('T')[0]);
+
+            const input = div.querySelector(`input[name="family_birthPlace_${familyMemberCount}"]`);
+            input.addEventListener('input', function() {
+                clearTimeout(autocompleteTimeout);
+                const q = this.value.trim();
+                if (q.length < 2) {
+                    document.getElementById(`familyBirthPlaceDropdown${familyMemberCount}`).classList.remove('show');
+                    return;
+                }
+                autocompleteTimeout = setTimeout(() => searchCityForFamily(q, familyMemberCount), 300);
+            });
+        }
+
+        function searchCityForFamily(query, id) {
+            fetch(`/api/search_city?q=${encodeURIComponent(query)}`)
+                .then(res => res.json())
+                .then(data => {
+                    const dropdown = document.getElementById(`familyBirthPlaceDropdown${id}`);
+                    if (!dropdown) return;
+                    dropdown.innerHTML = '';
+                    if (data.results?.length) {
+                        data.results.forEach(r => {
+                            const item = document.createElement('div');
+                            item.className = 'autocomplete-item';
+                            item.textContent = r.name;
+                            item.onclick = () => {
+                                document.querySelector(`input[name="family_birthPlace_${id}"]`).value = r.name;
+                                document.querySelector(`input[name="family_birthPlaceLat_${id}"]`).value = r.lat;
+                                document.querySelector(`input[name="family_birthPlaceLon_${id}"]`).value = r.lon;
+                                dropdown.classList.remove('show');
+                            };
+                            dropdown.appendChild(item);
+                        });
+                        dropdown.classList.add('show');
+                    }
+                });
+        }
+
+        function removeFamilyMember(id) {
+            document.getElementById(`familyMember${id}`)?.remove();
+        }
+
+        updateProgress();
+    </script>
+</body>
+</html>
