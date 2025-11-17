@@ -88,7 +88,7 @@ def submit_form():
         }
 
         # Отправка на webhook
-   webhook_url = os.getenv('WEBHOOK_URL')
+        webhook_url = os.getenv('WEBHOOK_URL')
         if webhook_url:
             try:
                 response = requests.post(
